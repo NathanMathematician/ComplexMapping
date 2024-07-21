@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-        SDL_Delay(10000);
+        SDL_Delay(1000);
         SDL_DestroyWindow(window);
     }
 
