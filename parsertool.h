@@ -76,19 +76,6 @@ struct OperatorComplex
 
 /** Functions prototypes ================================================ **/
 
-////////////////////////////////////////////////////////
-// Prototypes for real operators evaluation functions //
-////////////////////////////////////////////////////////
-
-void realAddition(const realNumber *realLeft, const realNumber *realRight, realNumber *result);
-void realSubtraction(const realNumber *realLeft, const realNumber *realRight, realNumber *result);
-void realMultiplication(const realNumber *realLeft, const realNumber *realRight, realNumber *result);
-void realDivision(const realNumber *realLeft, const realNumber *realRight, realNumber *result);
-void realModulo(const realNumber *realLeft, const realNumber *realRight, realNumber *result);
-void realPower(const realNumber *realLeft, const realNumber *realRight, realNumber *result);
-
-void realOperatorSupportedListGeneration(OperatorReal *realOperatorList);
-
 ///////////////////////////////////////////////////////////////////
 // Function prototype for complex operators evaluation functions //
 ///////////////////////////////////////////////////////////////////
@@ -103,32 +90,32 @@ void complexDivision(const complex *complexLeft, const complex *complexRight, co
 void complexModulo(const complex *complexLeft, const complex *complexRight, complex *result);
 void complexPower(const complex *complexLeft, const complex *complexRight, complex *result);
 
-void complexAbs(const complex *number, const complex *voidNumber,complex *result);
-void complexArg(const complex *number, const complex *voidNumber,complex *result);
-void complexImag(const complex *number, const complex *voidNumber,complex *result);
-void complexReal(const complex *number, const complex *voidNumber,complex *result);
-void complexConj(const complex *number, const complex *voidNumber,complex *result);
-void complexProj(const complex *number, const complex *voidNumber,complex *result);
+void complexAbs(const complex *number, const complex *voidNumber, complex *result);
+void complexArg(const complex *number, const complex *voidNumber, complex *result);
+void complexImag(const complex *number, const complex *voidNumber, complex *result);
+void complexReal(const complex *number, const complex *voidNumber, complex *result);
+void complexConj(const complex *number, const complex *voidNumber, complex *result);
+void complexProj(const complex *number, const complex *voidNumber, complex *result);
 
-void complexExp(const complex *number, const complex *voidNumber,complex *result);
-void complexLog(const complex *number, const complex *voidNumber,complex *result);
-void complexSqrt(const complex *number, const complex *voidNumber,complex *result);
+void complexExp(const complex *number, const complex *voidNumber, complex *result);
+void complexLog(const complex *number, const complex *voidNumber, complex *result);
+void complexSqrt(const complex *number, const complex *voidNumber, complex *result);
 
-void complexSin(const complex *number, const complex *voidNumber,complex *result);
-void complexCos(const complex *number, const complex *voidNumber,complex *result);
-void complexTan(const complex *number, const complex *voidNumber,complex *result);
-void complexAsin(const complex *number, const complex *voidNumber,complex *result);
-void complexAcos(const complex *number, const complex *voidNumber,complex *result);
-void complexAtan(const complex *number, const complex *voidNumber,complex *result);
+void complexSin(const complex *number, const complex *voidNumber, complex *result);
+void complexCos(const complex *number, const complex *voidNumber, complex *result);
+void complexTan(const complex *number, const complex *voidNumber, complex *result);
+void complexAsin(const complex *number, const complex *voidNumber, complex *result);
+void complexAcos(const complex *number, const complex *voidNumber, complex *result);
+void complexAtan(const complex *number, const complex *voidNumber, complex *result);
 
-void complexSinh(const complex *number, const complex *voidNumber,complex *result);
-void complexCosh(const complex *number, const complex *voidNumber,complex *result);
-void complexTanh(const complex *number, const complex *voidNumber,complex *result);
-void complexAsinh(const complex *number, const complex *voidNumber,complex *result);
-void complexAcosh(const complex *number, const complex *voidNumber,complex *result);
-void complexAtanh(const complex *number, const complex *voidNumber,complex *result);
+void complexSinh(const complex *number, const complex *voidNumber, complex *result);
+void complexCosh(const complex *number, const complex *voidNumber, complex *result);
+void complexTanh(const complex *number, const complex *voidNumber, complex *result);
+void complexAsinh(const complex *number, const complex *voidNumber, complex *result);
+void complexAcosh(const complex *number, const complex *voidNumber, complex *result);
+void complexAtanh(const complex *number, const complex *voidNumber, complex *result);
 
-void complexOperatorSupportedListGeneration(OperatorComplex *realOperatorList);
+void complexOperatorSupportedListGeneration(OperatorComplex *complexOperatorList);
 
 /////////////////////////////////////////////
 // Prototypes for reading complex function //
@@ -142,103 +129,6 @@ void complexPreImageListGeneration(const complex *leftUp, const complex *rightDo
 void complexFunctionCalculation(complex *leftUp, complex *rightDown, int windowWidth, int windowHeight, complex *imageList);
 
 /** Functions =========================================================== **/
-
-/////////////////////////////////////////////////////////////////
-// Function definition for real operators evaluation functions //
-/////////////////////////////////////////////////////////////////
-
-void realAddition(const realNumber *realLeft, const realNumber *realRight, realNumber *result)
-{
-    *result = *realLeft + *realRight;
-}
-
-void realSubtraction(const realNumber *realLeft, const realNumber *realRight, realNumber *result)
-{
-    *result = *realLeft - *realRight;
-}
-
-void realMultiplication(const realNumber *realLeft, const realNumber *realRight, realNumber *result)
-{
-    *result = *realLeft * *realRight;
-}
-
-void realDivision(const realNumber *realLeft, const realNumber *realRight, realNumber *result)
-{
-    *result = *realLeft / *realRight;
-}
-
-void realModulo(const realNumber *realLeft, const realNumber *realRight, realNumber *result)
-{
-    *result = fmod(*realLeft, *realRight);
-}
-
-void realPower(const realNumber *realLeft, const realNumber *realRight, realNumber *result)
-{
-    *result = pow(*realLeft, *realRight);
-}
-
-void realOperatorSupportedListGeneration(OperatorReal *realOperatorList)
-{
-    realOperatorList = malloc(sizeof(OperatorReal) * OPERATOR_REAL_SUPPORTED_COUNT);
-
-    if (realOperatorList == NULL)
-    {
-        exit(EXIT_FAILURE);
-    }
-
-    realOperatorList[0].operatorText = "(";
-    realOperatorList[0].precedence = 0;
-    realOperatorList[0].associativity = ASSOCIATIVITY_NULL;
-    realOperatorList[0].unaryORbinary = OPERATOR_BINARY;
-    realOperatorList[0].operationRealEvaluation = NULL;
-
-    realOperatorList[1].operatorText = ")";
-    realOperatorList[1].precedence = 0;
-    realOperatorList[1].associativity = ASSOCIATIVITY_NULL;
-    realOperatorList[1].unaryORbinary = OPERATOR_BINARY;
-    realOperatorList[1].operationRealEvaluation = NULL;
-
-    realOperatorList[2].operatorText = "+";
-    realOperatorList[2].precedence = 5;
-    realOperatorList[2].associativity = ASSOCIATIVITY_LEFT;
-    realOperatorList[2].unaryORbinary = OPERATOR_BINARY;
-    realOperatorList[2].operationRealEvaluation = realAddition;
-
-    realOperatorList[3].operatorText = "-";
-    realOperatorList[3].precedence = 5;
-    realOperatorList[3].associativity = ASSOCIATIVITY_LEFT;
-    realOperatorList[3].unaryORbinary = OPERATOR_BINARY;
-    realOperatorList[3].operationRealEvaluation = realSubtraction;
-
-    realOperatorList[4].operatorText = "*";
-    realOperatorList[4].precedence = 8;
-    realOperatorList[4].associativity = ASSOCIATIVITY_LEFT;
-    realOperatorList[4].unaryORbinary = OPERATOR_BINARY;
-    realOperatorList[4].operationRealEvaluation = realMultiplication;
-
-    realOperatorList[5].operatorText = "/";
-    realOperatorList[5].precedence = 8;
-    realOperatorList[5].associativity = ASSOCIATIVITY_LEFT;
-    realOperatorList[5].unaryORbinary = OPERATOR_BINARY;
-    realOperatorList[5].operationRealEvaluation = realDivision;
-
-    realOperatorList[6].operatorText = "%";
-    realOperatorList[6].precedence = 8;
-    realOperatorList[6].associativity = ASSOCIATIVITY_LEFT;
-    realOperatorList[6].unaryORbinary = OPERATOR_BINARY;
-    realOperatorList[6].operationRealEvaluation = realModulo;
-
-    realOperatorList[7].operatorText = "^";
-    realOperatorList[7].precedence = 9;
-    realOperatorList[7].associativity = ASSOCIATIVITY_RIGHT;
-    realOperatorList[7].unaryORbinary = OPERATOR_BINARY;
-    realOperatorList[7].operationRealEvaluation = realPower;
-}
-
-
-/////////////////////////////////////////////////////////////////
-// Function definition for real operators evaluation functions //
-/////////////////////////////////////////////////////////////////
 
 void emptyBuffer()
 {
